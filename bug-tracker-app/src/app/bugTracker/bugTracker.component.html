@@ -1,26 +1,10 @@
-<input type="checkbox" (change)="dummy = $event.target.checked" />
-<section class="stats">
-	<span class="closed">{{bugs | closedCount}}</span>
-	<span> / </span>
-	<span>{{bugs.length}}</span>
-</section>
-<section class="sort">
-	<label for="">Order By :</label>
-	<select (change)="bugSortAttr = $event.target.value">
-		<option value="name">Name</option>
-		<option value="isClosed">Status</option>
-	</select>
-	<label for="">Descending ? :</label>
-	<input type="checkbox" (change)="bugSortDescending = $event.target.checked">
-</section>
-<section class="edit">
-	<label for="">Bug Name :</label>
-	<input type="text" [(ngModel)]="newBugName" >
-	<input type="button" value="Add New" (click)="onAddNewClick()">
-</section>
+
+<app-bug-stats [data]="bugs"></app-bug-stats>
+<app-bug-sort></app-bug-sort>
+<app-bug-edit (bugCreated)="onNewBugCreation($event)"></app-bug-edit>
 <section class="list">
 	<ol>
-		<li *ngFor="let bug of ( bugs | sort:bugSortAttr:bugSortDescending )">
+		<li *ngFor="let bug of ( bugs | sort:bugSortService.sortAttr:bugSortService.sortDescending )">
 			<span class="bugname" 
 				[ngClass]="{closed : bug.isClosed}" 
 				(click)="onBugNameClick(bug)">

@@ -5,10 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { UtilsModule } from './utils/utils.module';
 
 import { AppComponent } from './app.component';
+
 import { BugTrackerComponent } from './bugTracker/bugTracker.component';
+import { BugStatsComponent } from './bugTracker/views/bugStats.component';
+import { BugEditComponent } from './bugTracker/views/bugEdit.component';
+import { BugSortComponent } from './bugTracker/views/bugSort.component';
 
 import { BugOperationsService } from './bugTracker/services/bugOperations.service';
 import { BugStorageService } from './bugTracker/services/bugStorage.service';
+import { BugSortService } from './bugTracker/services/bugSortService';
 
 import { ClosedCountPipe } from './bugTracker/pipes/closedCount.pipe';
 
@@ -18,6 +23,9 @@ import { ClosedCountPipe } from './bugTracker/pipes/closedCount.pipe';
     AppComponent
     , BugTrackerComponent
     , ClosedCountPipe
+    , BugStatsComponent
+    , BugEditComponent
+    , BugSortComponent
   ],
   imports: [
     BrowserModule
@@ -25,8 +33,9 @@ import { ClosedCountPipe } from './bugTracker/pipes/closedCount.pipe';
     , UtilsModule
   ],
   providers: [
-    BugOperationsService,
-    BugStorageService
+    BugOperationsService
+    , BugStorageService
+    , BugSortService
    ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Bug } from './models/Bug';
 import { BugOperationsService } from './services/bugOperations.service';
+import { BugSortService } from './services/bugSortService';
 
 @Component({
 	selector : 'app-bug-tracker',
@@ -8,12 +9,7 @@ import { BugOperationsService } from './services/bugOperations.service';
 })
 export class BugTrackerComponent implements OnInit{
 	bugs : Bug[] = [];
-	bugSortAttr : string = 'name';
-	bugSortDescending : boolean = false;
-
-	newBugName : string = '';
-
-	dummy = null;
+	
 
 	/*bugOperations : BugOperationsService = null;
 
@@ -21,7 +17,7 @@ export class BugTrackerComponent implements OnInit{
 		this.bugOperations = _bugOperations;
 	}*/
 
-	constructor(private bugOperations : BugOperationsService){
+	constructor(private bugOperations : BugOperationsService, private bugSortService : BugSortService){
 		
 	}
 
@@ -36,11 +32,10 @@ export class BugTrackerComponent implements OnInit{
 		this.bugs.push(this.bugOperations.createNew('Application is not responding'));
 	}
 
-	onAddNewClick(){
-		let newBug : Bug = this.bugOperations.createNew(this.newBugName);
-		//this.bugs.push(newBug); 
+	onNewBugCreation(newBug){
 		this.bugs = [...this.bugs, newBug];
 	}
+	
 	onBugNameClick(bugToToggle : Bug){
 		let toggledBug = this.bugOperations.toggle(bugToToggle);
 		this.bugs = this.bugs.map(bug => bug === bugToToggle ? toggledBug : bug);

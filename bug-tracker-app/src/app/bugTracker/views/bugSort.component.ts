@@ -17,7 +17,7 @@ import { BugSortService } from '../services/bugSortService';
 	providers : []
 })
 export class BugSortComponent{
-	constructor(private bugSortService : BugSortService){
+	constructor(public bugSortService : BugSortService){
 
 	}
 }

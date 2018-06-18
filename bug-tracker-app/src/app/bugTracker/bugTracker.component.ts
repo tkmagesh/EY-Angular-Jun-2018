@@ -12,10 +12,11 @@ import { BugSortService } from './services/bugSortService';
 export class BugTrackerComponent implements OnInit{
 	bugs : Bug[] = [];
 	
+	dummy : boolean = null;
 
 	constructor(
 		private bugOperations : BugOperationsService, 
-		private bugSortService : BugSortService
+		public bugSortService : BugSortService
 	){
 		
 	}

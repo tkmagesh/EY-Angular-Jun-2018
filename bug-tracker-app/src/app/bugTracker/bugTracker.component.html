@@ -1,4 +1,4 @@
-
+<input type="checkbox" (change)="dummy = $event.target.checked" />
 <app-bug-stats [data]="bugs"></app-bug-stats>
 <app-bug-sort></app-bug-sort>
 <app-bug-edit (bugCreated)="onNewBugCreation($event)"></app-bug-edit>
